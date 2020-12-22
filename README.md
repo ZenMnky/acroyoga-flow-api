@@ -1,8 +1,8 @@
 # EXPRESS BOILERPLATE
 
-### Get your Express project up and running easily with this boilerplate
-Set is designed to be deployed to Heroku.   
-Due to pervious experiences of bugs when using Node 14.x and Heroku,   
+### Get your Express project up and running easily with this boilerplate    
+ - Designed to be deployed to Heroku.   
+ - Due to pervious experiences of bugs when using Node 14.x and Heroku,   
 configuations have been setup to use Node version 12.14, PG version 7.x, and ssl connection set to 'true' in production.
 ---
 
