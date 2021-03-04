@@ -8,7 +8,7 @@
     "test": "mocha --require test/setup.js --exit",
     "watch": "npm t -- --watch",
     "predeploy": "npm audit",
-    "deploy": "git push heroku main",
+    "deploy": "git push heroku master",
     "postdeploy": "npm run migrate:production",
     "start": "node src/server.js",
     "dev": "supervisor -- ./src/server.js -w -i node_modules",
