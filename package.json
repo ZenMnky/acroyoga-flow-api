@@ -9,7 +9,6 @@
     "watch": "npm t -- --watch",
     "predeploy": "npm audit",
     "deploy": "git push heroku master",
-    "postdeploy": "npm run migrate:production",
     "start": "node src/server.js",
     "dev": "supervisor -- ./src/server.js -w -i node_modules",
     "migrate": "postgrator --config postgrator-config.js",
@@ -21,7 +20,7 @@
     "phoenix:dev": "npm run migrate -- 0 && npm run migrate && npm run seed:dev"
   },
   "keywords": [],
-  "engine": {
+  "engines": {
     "node": "14.0.0"
   },
   "author": "Justin 'ZenMnky' Hager",
