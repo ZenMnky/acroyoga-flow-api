@@ -16,11 +16,13 @@
     "migrate:test": "env NODE_ENV=test npm run migrate",
     "migrate:production": "heroku run npm run migrate",
     "seed:production": "cat ./seeds/seed.acroyoga_elements.sql | heroku pg:psql && cat ./seeds/seed.acroyoga_flows.sql | heroku pg:psql",
-    "seed:dev": "psql -U postgres -d acroyoga_flow -f ./seeds/seed.acroyoga_elements.sql && psql -U postgres -d acroyoga_flow -f ./seeds/seed.acroyoga_flows.sql"
+    "seed:dev": "psql -U postgres -d acroyoga_flow -f ./seeds/seed.acroyoga_elements.sql && psql -U postgres -d acroyoga_flow -f ./seeds/seed.acroyoga_flows.sql",
+    "phoenix:production": "npm run deploy && heroku run npm run migrate -- 0 && heroku run npm run migrate &&  npm run seed:production",
+    "phoenix:dev": "npm run migrate -- 0 && npm run migrate && npm run seed:dev"
   },
   "keywords": [],
   "engine": {
-    "node": "14.x"
+    "node": "14.0.0"
   },
   "author": "Justin 'ZenMnky' Hager",
   "license": "ISC",
