@@ -8,6 +8,7 @@ const { NODE_ENV } = require('./config');
 // const validateBearerToken = require('./validate-bearer-token');
 const errorHandler = require('./error-handler');
 const acroElementsRouter = require('./acroElements/acroElements-router');
+const acroFlowsRouter = require('./acroFlows/acroFlows-router');
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/acroelements', acroElementsRouter);
+app.use('/api/flows', acroFlowsRouter);
 
 app.get('/', (req, res) => {
   res.send('Hello, boilerplate!')

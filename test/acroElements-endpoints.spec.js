@@ -33,11 +33,11 @@ describe('AcroElements endpoints', () => {
               const testElements = acroElements.acroElementsForInsert();
               const returnElements = acroElements.acroElementsForReturn();
         
-              beforeEach('insert articles', () => {
+              beforeEach('insert elements', () => {
                 return db.into('acroyoga_elements').insert(testElements);
               });
         
-              it('GET /api/acroelements responds with 200 and all articles', () => {
+              it('GET /api/acroelements responds with 200 and all acro elements', () => {
                 return supertest(app).get('/api/acroelements').expect(200, returnElements);
               });
             });
