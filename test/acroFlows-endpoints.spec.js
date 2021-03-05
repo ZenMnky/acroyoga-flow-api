@@ -50,7 +50,35 @@ describe('AcroFlows endpoints', () => {
       });
         
     });
+    
+    describe('POST /api/flows', () => {
+
+      it('creates a flow, responds with 201 and the new flow', () => {
+
+        const newFlow = {
+          flowTitle: 'My New Flow',
+          flowSlugTitle: 'my-new-flow',
+          flowSequence: ['front-bird', 'throne', 'front-bird']
+        };
+
+        return supertest(app)
+          .post('/api/flows')
+          .send(newFlow)
+          .expect(201)
+          .expect((res) => {
+            expect(res.body.flowTitle).to.eql(newFlow.flowTitle);
+            expect(res.body.flowSlugTitle).to.eql(newFlow.flowSlugTitle);
+            expect(res.body.flowSequence).to.eql(newFlow.flowSequence);
+            expect(res.body).to.have.property('flowId');
+            expect(res.headers.location).to.eql(`/api/flows/${res.body.flowId}`);
+          })
         
+      });
+      
+   
+      
+         
+    });
 
 
 })
