@@ -16,7 +16,7 @@ acroFlowsRouter
   .route('/')
   .get((req, res, next) => {
     AcroFlowsService.getAllFlows(req.app.get('db'))
-      .then(flows => res.json(flows.map(sanitizeFlow)))
+      .then(flows => res.status(200).json(flows.map(sanitizeFlow)))
       .catch(next);
   })
 //   .post((req, res, next) => {
