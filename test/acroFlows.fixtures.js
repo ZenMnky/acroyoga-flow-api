@@ -18,13 +18,27 @@ const acroFlowsReturnData = [
     "flowId": 1,
     "flowTitle": "My First Flow",
     "flowSlugTitle": "my-first-flow",
-    "flowSequence": "front-bird,vishnus-couch,front-bird,star-open-straddle,front-bird"
+    "flowSequence": [
+      'front-bird',
+      'vishnus-couch',
+      'front-bird',
+      'star-open-straddle',
+      'front-bird'
+    ]
   },
   {
     "flowId": 2,
     "flowTitle": "My Second Flow",
     "flowSlugTitle": "my-second-flow",
-    "flowSequence": "front-bird,vishnus-couch,front-bird,star-open-straddle,front-bird,vishnus-couch,throne"
+    "flowSequence": [
+      'front-bird',
+      'vishnus-couch',
+      'front-bird',
+      'star-open-straddle',
+      'front-bird',
+      'vishnus-couch',
+      'throne'
+    ]
   }
 ];
 

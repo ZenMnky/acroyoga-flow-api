@@ -9,7 +9,7 @@ const sanitizeFlow = flow => ({
     flowId: flow.flow_id,
     flowTitle: xss(flow.flow_title),
     flowSlugTitle: xss(flow.flow_slug_title),
-    flowSequence: xss(flow.flow_sequence)
+    flowSequence: flow.flow_sequence
 })
 
 acroFlowsRouter
@@ -19,99 +19,50 @@ acroFlowsRouter
       .then(flows => res.status(200).json(flows.map(sanitizeFlow)))
       .catch(next);
   })
-//   .post((req, res, next) => {
-//     const { content, attribution, source, tags } = req.body;
+  .post((req, res, next) => {
+
+    // validate body
+    if(!req.body) {
+      return res.status(400).json({
+        error: { message: `Missing request body` }
+      });
+    }
+
+    // destructure
+    const { flowTitle, flowSlugTitle, flowSequence } = req.body;
     
-//     let reqFields = { content }
-//     let optionalFileds = { attribution, source, tags }
+    // declare required fields
+    let reqFields = { flowTitle, flowSlugTitle, flowSequence };
+
     
-//     // validate
-//     for (const [key, value] of Object.entries(reqFields)) {
-//       if(value === null) {
-//         return res.status(400).json({
-//           error: { message: `Missing ${key} in request body` }
-//         });
-//       }
-//     }
+    // validate required fields
+    for (const [key, value] of Object.entries(reqFields)) {
+      if(!value) {
+        return res.status(400).json({
+          error: { message: `Missing ${key} in request body` }
+        });
+      }
+    }
 
-//     let newFlow = {
-//         ...reqFields,
-//         ...optionalFileds
-//     }
+    // construct new flow object
+    let newFlow = {
+        flow_title: flowTitle,
+        flow_slug_title: flowSlugTitle,
+        flow_sequence: flowSequence
+    };
 
-//     FavoriteFlowsServices.insertFlow(
-//       req.app.get('db'),
-//       newFlow
-//     )
-//       .then(flow => {
-//         res
-//           .status(201)
-//           .location(path.posix.join (req.originalUrl, `/${flow.id}`))
-//           .json(sanitizeFlow(flow));
-//       })
-//       .catch(next);
-//   });
-
-// acroFlowsRouter
-//   .route('/:flow_id')
-//   .all((req, res, next) => {
-//     FavoriteFlowsServices.getById(
-//       req.app.get('db'),
-//       req.params.flow_id
-//     )
-//       .then(flow => {
-//         if (!flow) {
-//           return res.status(404).json({
-//             error: { message: `Flow doesn't exist` }
-//           });
-//         };
-//         res.flow = flow;
-//         next();
-//       })
-//       .catch(next);
-//   })
-//   .get((req, res, next) => {
-//     return res.json(sanitizeFlow(res.flow));
-//   })
-//   .patch(bodyParser, (req,res,next) => {
-//     const { content, attribution, source, tags } = req.body;
-    
-//     let reqFields = { content }
-//     let optionalFileds = { attribution, source, tags }
-    
-//     // validate
-//     for (const [key, value] of Object.entries(reqFields)) {
-//       if(value === null) {
-//         return res.status(400).json({
-//           error: { message: `Missing ${key} in request body` }
-//         });
-//       }
-//     }
-
-//     let updatedFlow = {
-//         ...reqFields,
-//         ...optionalFileds
-//     }
-
-//     FavoriteFlowsServices.updateFlow(
-//         req.app.get('db'),
-//         req.params.flow_id,
-//         updatedFlow
-//     )
-//     .then(numRowsAffected => {
-//         return res.status(204).end()
-//     })
-//     .catch(next)        
-// })
-//   .delete((req, res, next) => {
-//     FavoriteFlowsServices.deleteArticle(
-//       req.app.get('db'),
-//       req.params.flow_id
-//     )
-//       .then(() => {
-//         return res.status(204).end();
-//       })
-//       .catch(next);
-//   });
+    // insert new flow object into database
+    AcroFlowsService.insertFlow(
+      req.app.get('db'),
+      newFlow
+    )
+      .then(flow => {
+        res
+          .status(201)
+          .location(path.posix.join (req.originalUrl, `/${flow.flow_id}`))
+          .json(sanitizeFlow(flow));
+      })
+      .catch(next);
+  });
 
 module.exports = acroFlowsRouter;
