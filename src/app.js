@@ -25,7 +25,7 @@ app.use('/api/acroelements', acroElementsRouter);
 app.use('/api/flows', acroFlowsRouter);
 
 app.get('/', (req, res) => {
-  res.send('Hello, boilerplate!')
+  res.send('Hello! All the action is at /api/acroelements & /api/flows. Try a GET request.')
 });
 
 app.use(errorHandler);
