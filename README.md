@@ -32,7 +32,7 @@ _API & PostgreSQL DB for AcroYoga Flow client_
 
 ### API Endpoints
 - `/api/flows`
-    - GET request
+    - GET request - Get an array of all stored acroyoga flows
         - Example response:
         ```json
         [
@@ -64,33 +64,7 @@ _API & PostgreSQL DB for AcroYoga Flow client_
             }
         ]
         ```
-- `/api/acroelements`
-    - GET request
-         - Example response:
-         ```json
-         [
-            {
-                "elementId": 1,
-                "elementSlugId": "straddle-bat",
-                "elementName": "Straddle Bat",
-                "elementThumbUrl": "https://i.ibb.co/0Bh1W9K/Straddle-Bat.png"
-            },
-            {
-                "elementId": 2,
-                "elementSlugId": "bat",
-                "elementName": "Bat",
-                "elementThumbUrl": "https://i.ibb.co/gSzQS0L/Bat.png"
-            },
-            {
-                "elementId": 3,
-                "elementSlugId": "front-bird",
-                "elementName": "Front Bird",
-                "elementThumbUrl": "https://i.ibb.co/0K3404P/Front-Bird.png"
-            },
-            ...
-        ]
-         ```
-    - POST request
+    - POST request - add a new flow to the database
         - required fields:
             - `flowTitle` - string
             - `flowSlugTitle` - string
@@ -115,6 +89,34 @@ _API & PostgreSQL DB for AcroYoga Flow client_
                 ]
             }
             ```
+
+- `/api/acroelements`
+    - GET request - get an array of all the acroyoga elements stored in the database
+         - Example response:
+         ```json
+         [
+            {
+                "elementId": 1,
+                "elementSlugId": "straddle-bat",
+                "elementName": "Straddle Bat",
+                "elementThumbUrl": "https://i.ibb.co/0Bh1W9K/Straddle-Bat.png"
+            },
+            {
+                "elementId": 2,
+                "elementSlugId": "bat",
+                "elementName": "Bat",
+                "elementThumbUrl": "https://i.ibb.co/gSzQS0L/Bat.png"
+            },
+            {
+                "elementId": 3,
+                "elementSlugId": "front-bird",
+                "elementName": "Front Bird",
+                "elementThumbUrl": "https://i.ibb.co/0K3404P/Front-Bird.png"
+            },
+            ...
+        ]
+         ```
+    
 
 ## Screenshots
 | View |Image |
