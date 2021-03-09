@@ -13,7 +13,7 @@ _API & PostgreSQL DB for AcroYoga Flow client_
     - Quickly satisfy the project requirements provided by Thinkful and thereby fully complete the coursework
         - This goal was achieved by separating desired features from minimum viable product features, and focusing on the core essence of the project idea.
     - Have an [interactive flow creation feature](https://acroyoga-flow.vercel.app/create/flow) - something that feels more physically engaging than just clicking on a list of items
-        - This goal was achieved by using [React-Beautiful-DnD](https://www.npmjs.com/package/react-beautiful-dnd), a library designed specifically for adding a sense of natural movement to lits of items
+        - This goal was achieved by using [React-Beautiful-DnD](https://www.npmjs.com/package/react-beautiful-dnd), a library designed specifically for adding a sense of natural movement to lists of items
     - Learn some new things
         - This project was developed in a time crunch, so I had to be very thoughtful about choosing what I wanted to learn.
         - I chose to go with: 
